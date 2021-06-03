@@ -201,6 +201,27 @@ mapkey('O', '#1Open detected links from text', function() {
     }, {statusLine: "Open detected links from text"});
 });
 
+mapkey('i', 'Invert colors on pdf.js', function () {
+    const id = 'pdfStyles';
+    if (!document.getElementById(id)) {
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .pdfViewer .page {
+                background-color: black;
+            }
+            .pdfViewer .canvasWrapper {
+                filter: invert(1);
+            }
+        `;
+        style.id = id;
+        document.head.appendChild(style);
+    } else {
+        document.getElementById(id).remove();
+    }
+}, {
+    domain: /pages\/pdf_viewer\.html/i,
+});
+
 mapkey(';s', 'Toggle PDF viewer from SurfingKeys', function() {
     var pdfUrl = window.location.href;
     if (pdfUrl.indexOf(chrome.extension.getURL("/pages/pdf_viewer.html")) === 0) {
