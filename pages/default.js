@@ -219,7 +219,7 @@ mapkey('i', 'Invert colors on pdf.js', function () {
         document.getElementById(id).remove();
     }
 }, {
-    domain: /pages\/pdf_viewer\.html/i,
+    domain: /pages\/pdf_viewer\.html/i
 });
 
 mapkey(';s', 'Toggle PDF viewer from SurfingKeys', function() {
