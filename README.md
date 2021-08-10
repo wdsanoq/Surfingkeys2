@@ -16,6 +16,8 @@ Surfingkeys works for Firefox(above 57) since 0.9.15, with below features as exc
 * Proxy settings
 * Markdown preview
 
+Surfingkeys is doing its best to make full use of keyboard for web browsing, but there are some limitations from Google Chrome itself, please see [Brook Build of Chromium](https://brookhong.github.io/2021/04/18/brook-build-of-chromium.html) for a more thorough experience.
+
 ## Installation
 
 * [Surfingkeys - Chrome Web Store](https://chrome.google.com/webstore/detail/surfingkeys/gfbliohnnapiefjpjlpjnehglfpaknnc)
@@ -346,13 +348,13 @@ By default, `Alt-s` will toggle Surfingkeys for current site. When Surfingkeys i
 
 When Surfingkeys is turned off on some site by `Alt-s`, the status will be persisted in settings, for example,
 
-    "blacklist": {
+    "blocklist": {
         "https://github.com": 1
     },
 
-`Alt-s` once more will remove it from settings.blacklist. The data settings are not always presented in snippets, you could use `yj` to dump all settings into clipboard, then paste it in your text editor to check out.
+`Alt-s` once more will remove it from settings.blocklist. The data settings are not always presented in snippets, you could use `yj` to dump all settings into clipboard, then paste it in your text editor to check out.
 
-Another way to disable Surfingkeys is to use `settings.blacklistPattern`, please refer to [regex for disabling](https://github.com/brookhong/Surfingkeys/issues/63).
+Another way to disable Surfingkeys is to use `settings.blocklistPattern`, please refer to [regex for disabling](https://github.com/brookhong/Surfingkeys/issues/63).
 
 ## Proxy settings
 
@@ -411,6 +413,8 @@ You could change to Emacs keybindings for the editor by adding below settings:
     settings.aceKeybindings = "emacs";
 
 With Emacs keybindings, use `C-x C-s` to save your input.
+
+Surfingkeys is also integrated with [glacambre/firenvim](https://github.com/glacambre/firenvim), so that user can use neovim to edit input. Basically when you try to activate vim editor by `Ctrl-i`, Surfingkeys will try to activate neovim through `firenvim` first, and if it fails, Surfingkeys will then call the built-in ACE vim editor for you. If you would not like such behavior, just set `settings.useNeovim` false.
 
 ### Edit any input on html page
 
@@ -671,7 +675,7 @@ For example,
 | settings.hintExplicit | false | Whether to wait for explicit input when there is only a single hint available |
 | settings.hintShiftNonActive | false | Whether new tab is active after entering hint while holding shift |
 | settings.defaultSearchEngine | "g" | The default search engine used in Omnibar. |
-| settings.blacklistPattern | undefined | A regex to match the sites that will have Surfingkeys disabled. |
+| settings.blocklistPattern | undefined | A regex to match the sites that will have Surfingkeys disabled. |
 | settings.focusAfterClosed | "right" | Which tab will be focused after the current tab is closed. ["left", "right", "last"] |
 | settings.repeatThreshold | 99 | The maximum of actions to be repeated. |
 | settings.tabsMRUOrder | true | Whether to list opened tabs in order of most recently used beneath Omnibar. |
@@ -693,6 +697,7 @@ For example,
 | settings.caretViewport | null | Set it in format `[top, left, bottom, right]` to limit hints generation on `v` for entering visual mode, such as `[window.innerHeight / 2 - 10, 0, window.innerHeight / 2 + 10, window.innerWidth]` will make Surfingkeys generate Hints only for text that display on vertically middle of window. |
 | settings.mouseSelectToQuery | [] | All hosts that have enable feature -- mouse selection to query. |
 | settings.autoSpeakOnInlineQuery | false | Whether to automatically speak the query string with TTS on inline query. |
+| settings.useNeovim | true | Whether to use neovim(through [glacambre/firenvim](https://github.com/glacambre/firenvim)) as editor rather than the built-in ACE vim editor. |
 
 ### Example of settings.theme, below is to set font size of status bar
 
